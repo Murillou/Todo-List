@@ -60,3 +60,15 @@
     color: var(--color-orange);
   }
 }
+
+@media (max-width: 620px) {
+  .taskBar {
+    width: 20rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .taskBar {
+    width: 10rem;
+  }
+}
