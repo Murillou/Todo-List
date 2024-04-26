@@ -1,0 +1,13 @@
+.header {
+  height: 12.5rem;
+  background: var(--color-gray700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoLogo {
+  width: 7.8rem;
+  height: 3rem;
+}
+
