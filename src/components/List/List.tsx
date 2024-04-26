@@ -6,10 +6,13 @@ import { PlusCircle } from 'phosphor-react';
 import { FormEvent, ChangeEvent, useState } from 'react';
 import { Task } from '../Task/Task';
 
+interface TaskProps {
+  content: string;
+  completed: boolean;
+}
+
 export function List() {
-  const [newContent, setNewContent] = useState<
-    { content: string; completed?: boolean }[]
-  >([]);
+  const [newContent, setNewContent] = useState<TaskProps[]>([]);
   const [newTask, setNewTask] = useState('');
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
@@ -28,8 +31,19 @@ export function List() {
     setNewContent(updateTasks);
   }
 
+  function handleChecked(index: number) {
+    const checkTask = newContent.map((task, i) => {
+      if (i === index) {
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    setNewContent(checkTask);
+  }
+
   const iSNewTaskEmpty = newTask.length === 0;
   const totalTask = newContent.length;
+  const checkedTask = newContent.filter(task => task.completed);
 
   return (
     <>
@@ -63,7 +77,7 @@ export function List() {
             <p>
               Concluídas
               <span className={styles.iconPopUp}>
-                {totalTask} de {totalTask}
+                {checkedTask.length} de {totalTask}
               </span>
             </p>
           )}
@@ -82,6 +96,8 @@ export function List() {
                 key={index}
                 contentTask={task.content}
                 onDelete={() => handleDeleteTask(index)}
+                onChecked={() => handleChecked(index)}
+                isDone={task.completed}
               />
             ))
           )}
