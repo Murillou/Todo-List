@@ -24,12 +24,11 @@ export function List() {
   }
 
   function handleDeleteTask(index: number) {
-    const updateTasks = newContent.filter((none, i) => i !== index);
+    const updateTasks = newContent.filter((_, i) => i !== index);
     setNewContent(updateTasks);
   }
 
   const iSNewTaskEmpty = newTask.length === 0;
-  const taskCompleted = newContent.filter(task => task.completed);
   const totalTask = newContent.length;
 
   return (
@@ -64,7 +63,7 @@ export function List() {
             <p>
               Concluídas
               <span className={styles.iconPopUp}>
-                {taskCompleted.length} de {totalTask}
+                {totalTask} de {totalTask}
               </span>
             </p>
           )}
