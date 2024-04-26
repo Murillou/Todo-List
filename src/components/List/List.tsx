@@ -9,20 +9,20 @@ import { Task } from '../Task/Task';
 export function List() {
   const [newContent, setNewContent] = useState<string[]>([]);
   const [newTask, setNewTask] = useState('');
-  console.log('renderizado');
-  let contentNewComment: string = '';
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
-    contentNewComment = event.target.value;
-    setNewTask(contentNewComment);
+    setNewTask(event.target.value);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(contentNewComment);
 
     setNewContent(prev => [...prev, newTask]);
+    setNewTask('');
+    console.log(newTask);
   }
+
+  console.log(newTask);
 
   const ifNewTaskEmpty = newTask.length === 0;
 
@@ -34,6 +34,7 @@ export function List() {
           className={styles.inputtext}
           type="text"
           placeholder="Adicione uma nova tarefa"
+          value={newTask}
         />
 
         <button disabled={ifNewTaskEmpty} className={styles.buttonnewtask}>
@@ -62,7 +63,9 @@ export function List() {
               <p>Crie tarefas e organize seus itens a fazer</p>{' '}
             </>
           ) : (
-            newContent.map(task => <Task key={task} contentTask={task} />)
+            newContent.map((task, index) => (
+              <Task key={index} contentTask={task} />
+            ))
           )}
         </div>
       </section>
