@@ -3,9 +3,13 @@ import styles from './Task.module.css';
 
 interface Props {
   contentTask: string;
+  onDelete: () => void;
 }
 
-export function Task({ contentTask }: Props) {
+export function Task({ contentTask, onDelete }: Props) {
+  function handleDelete() {
+    onDelete();
+  }
   return (
     <main className={styles.taskBar}>
       <div className={styles.contentTask}>
@@ -15,7 +19,7 @@ export function Task({ contentTask }: Props) {
 
         <span className={styles.checkInput}></span>
       </div>
-      <Trash size={20} />
+      <Trash onClick={handleDelete} size={20} />
     </main>
   );
 }

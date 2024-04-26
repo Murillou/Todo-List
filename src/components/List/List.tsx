@@ -7,7 +7,9 @@ import { FormEvent, ChangeEvent, useState } from 'react';
 import { Task } from '../Task/Task';
 
 export function List() {
-  const [newContent, setNewContent] = useState<string[]>([]);
+  const [newContent, setNewContent] = useState<
+    { content: string; completed?: boolean }[]
+  >([]);
   const [newTask, setNewTask] = useState('');
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
@@ -17,14 +19,18 @@ export function List() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    setNewContent(prev => [...prev, newTask]);
+    setNewContent(prev => [...prev, { content: newTask, completed: false }]);
     setNewTask('');
-    console.log(newTask);
   }
 
-  console.log(newTask);
+  function handleDeleteTask(index: number) {
+    const updateTasks = newContent.filter((none, i) => i !== index);
+    setNewContent(updateTasks);
+  }
 
-  const ifNewTaskEmpty = newTask.length === 0;
+  const iSNewTaskEmpty = newTask.length === 0;
+  const taskCompleted = newContent.filter(task => task.completed);
+  const totalTask = newContent.length;
 
   return (
     <>
@@ -37,7 +43,7 @@ export function List() {
           value={newTask}
         />
 
-        <button disabled={ifNewTaskEmpty} className={styles.buttonnewtask}>
+        <button disabled={iSNewTaskEmpty} className={styles.buttonnewtask}>
           Criar <PlusCircle size={17} weight="bold" />
         </button>
       </form>
@@ -49,10 +55,19 @@ export function List() {
             <span className={styles.iconPopUp}>{newContent.length}</span>
           </p>
 
-          <p>
-            Concluídas
-            <span className={styles.iconPopUp}>{newContent.length}</span>
-          </p>
+          {newContent.length === 0 ? (
+            <p>
+              Concluídas
+              <span className={styles.iconPopUp}>{newContent.length}</span>
+            </p>
+          ) : (
+            <p>
+              Concluídas
+              <span className={styles.iconPopUp}>
+                {taskCompleted.length} de {totalTask}
+              </span>
+            </p>
+          )}
         </div>
 
         <div className={styles.localTask}>
@@ -64,7 +79,11 @@ export function List() {
             </>
           ) : (
             newContent.map((task, index) => (
-              <Task key={index} contentTask={task} />
+              <Task
+                key={index}
+                contentTask={task.content}
+                onDelete={() => handleDeleteTask(index)}
+              />
             ))
           )}
         </div>
