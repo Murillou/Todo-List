@@ -4,7 +4,7 @@
   justify-content: space-between;
   background: var(--color-gray500);
   font-size: 0.875rem;
-
+  margin-bottom: 1rem;
   border-radius: 8px;
   width: 46rem;
   padding: 1rem 1.1rem;

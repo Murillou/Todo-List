@@ -7,9 +7,9 @@ import { FormEvent, ChangeEvent, useState } from 'react';
 import { Task } from '../Task/Task';
 
 export function List() {
-  const [newContent, setNewContent] = useState([]);
+  const [newContent, setNewContent] = useState<string[]>([]);
   const [newTask, setNewTask] = useState('');
-
+  console.log('renderizado');
   let contentNewComment: string = '';
 
   function handleNewTask(event: ChangeEvent<HTMLInputElement>) {
@@ -21,7 +21,7 @@ export function List() {
     event.preventDefault();
     console.log(contentNewComment);
 
-    setNewContent(newTask);
+    setNewContent(prev => [...prev, newTask]);
   }
 
   const ifNewTaskEmpty = newTask.length === 0;
