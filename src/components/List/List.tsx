@@ -31,7 +31,7 @@ export function List() {
     setNewContent(updateTasks);
   }
 
-  function handleChecked(index: number) {
+  function handleToggleChecked(index: number) {
     const checkTask = newContent.map((task, i) => {
       if (i === index) {
         return { ...task, completed: !task.completed };
@@ -41,7 +41,7 @@ export function List() {
     setNewContent(checkTask);
   }
 
-  const iSNewTaskEmpty = newTask.length === 0;
+  const isNewTaskEmpty = newTask.length === 0;
   const totalTask = newContent.length;
   const checkedTask = newContent.filter(task => task.completed);
 
@@ -56,7 +56,7 @@ export function List() {
           value={newTask}
         />
 
-        <button disabled={iSNewTaskEmpty} className={styles.buttonnewtask}>
+        <button disabled={isNewTaskEmpty} className={styles.buttonnewtask}>
           Criar <PlusCircle size={17} weight="bold" />
         </button>
       </form>
@@ -96,7 +96,7 @@ export function List() {
                 key={index}
                 contentTask={task.content}
                 onDelete={() => handleDeleteTask(index)}
-                onChecked={() => handleChecked(index)}
+                onChecked={() => handleToggleChecked(index)}
                 isDone={task.completed}
               />
             ))
