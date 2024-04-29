@@ -31,20 +31,19 @@
       all: unset;
       border-radius: 100%;
       padding: 0.5rem;
-      background: var(--color-blue200);
       margin: 0;
       border: 2px solid var(--color-blue100);
     }
 
-    & .circleRadio:checked::after {
+    & .circleRadio:checked:after {
       content: '\2714';
-      padding: 0.29rem;
       margin: 0;
+      padding: 0.13rem 0.23rem;
       color: var(--color-white);
-      background: var(--color-purple200);
+      background: var(--color-purple100);
       position: absolute;
       border-radius: 100%;
-      transform: translate(-50%, -50%);
+      transform: translate(-49%, -50%);
     }
 
     & .checkInput {
