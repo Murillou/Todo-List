@@ -33,7 +33,7 @@
 
   & .buttonnewtask:disabled {
     cursor: not-allowed;
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   & .buttonnewtask:not(:disabled):hover {

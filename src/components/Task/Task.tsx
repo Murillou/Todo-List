@@ -18,15 +18,21 @@ export function Task({
     onDelete();
   }
 
+  function handleTrashClick(
+    event: React.MouseEvent<SVGSVGElement, MouseEvent>
+  ) {
+    event.stopPropagation();
+    handleDelete();
+  }
+
   function handleChecked() {
     onChecked();
   }
 
   return (
-    <main className={styles.taskBar}>
+    <main onClick={handleChecked} className={styles.taskBar}>
       <div className={styles.contentTask}>
         <input
-          onChange={handleChecked}
           className={styles.circleRadio}
           type="checkbox"
           checked={isDone}
@@ -36,7 +42,9 @@ export function Task({
 
         <span className={styles.checkInput}></span>
       </div>
-      <Trash onClick={handleDelete} size={20} />
+      <div className={styles.trashContainer}>
+        <Trash onClick={handleTrashClick} size={20} />
+      </div>
     </main>
   );
 }
