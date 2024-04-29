@@ -66,14 +66,8 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 760px) {
   .taskBar {
-    width: 20rem;
-  }
-}
-
-@media (max-width: 320px) {
-  .taskBar {
-    width: 10rem;
+    width: 100%;
   }
 }

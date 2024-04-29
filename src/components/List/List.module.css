@@ -95,7 +95,7 @@
   padding: 0.125rem 0.5rem;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 760px) {
   .inputnewtask {
     flex-direction: column;
     flex-wrap: wrap;
@@ -113,12 +113,9 @@
   }
 }
 
-@media (max-width: 320px) {
-  .sectionsTask {
-    width: 10rem;
-  }
-
+@media (max-width: 400px) {
   .infoTasks {
     flex-direction: column;
+    gap: 10px;
   }
 }
