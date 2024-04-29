@@ -95,9 +95,21 @@
   padding: 0.125rem 0.5rem;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 720px) {
+  .inputnewtask {
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    & .inputtext {
+      width: 90%;
+    }
+    & .buttonnewtask {
+      width: 90%;
+    }
+  }
+
   .sectionsTask {
-    width: 20rem;
+    width: 80%;
   }
 }
 

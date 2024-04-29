@@ -36,12 +36,15 @@
       border: 2px solid var(--color-blue100);
     }
 
-    & .circleRadio:checked {
-      font-size: 1px;
-      padding: 0.6rem;
+    & .circleRadio:checked::after {
+      content: '\2714';
+      padding: 0.29rem;
+      margin: 0;
       color: var(--color-white);
-      background: var(--color-purple100);
-      border: none;
+      background: var(--color-purple200);
+      position: absolute;
+      border-radius: 100%;
+      transform: translate(-50%, -50%);
     }
 
     & .checkInput {
